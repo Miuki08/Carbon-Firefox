@@ -19,7 +19,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Carbon React",
+  title: "Carbon TS",
   description: "Portal Firefox by Reina",
 };
 
