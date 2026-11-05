@@ -1,35 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { useNow } from "@/lib/useNow";
 
 export default function Clock() {
-  const [time, setTime] = useState<Date | null>(null);
+  const timestamp = useNow();
 
-  useEffect(() => {
-    setTime(new Date());
+  const date = timestamp === 0 ? null : new Date(timestamp);
 
-    const timer = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const hours = time
+  const hours = date
     ? new Intl.DateTimeFormat("id-ID", {
         hour: "2-digit",
         hour12: false,
-      }).format(time)
+      }).format(date)
     : "--";
 
-  const minutes = time
+  const minutes = date
     ? new Intl.DateTimeFormat("id-ID", {
         minute: "2-digit",
-      }).format(time)
+      }).format(date)
     : "--";
 
-  const seconds = time
+  const seconds = date
     ? new Intl.DateTimeFormat("id-ID", {
         second: "2-digit",
-      }).format(time)
+      }).format(date)
     : "--";
 
   return (

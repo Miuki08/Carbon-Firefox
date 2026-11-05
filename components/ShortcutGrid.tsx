@@ -27,7 +27,7 @@ export default function ShortcutGrid() {
           },
         },
       }}
-      className="grid grid-cols-3 gap-3 sm:grid-cols-6"
+      className="grid grid-cols-3 gap-3 sm:grid-cols-7"
     >
       {shortcuts.map((shortcut) => {
         const Icon = shortcut.icon;

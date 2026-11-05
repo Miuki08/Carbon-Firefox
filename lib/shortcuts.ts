@@ -5,6 +5,7 @@ import {
   SiGmail,
   SiYoutube,
   SiStackoverflow,
+  SiDiscord,
 } from "@icons-pack/react-simple-icons";
 
 export const shortcuts = [
@@ -37,5 +38,10 @@ export const shortcuts = [
     label: "Stack Overflow",
     href: "https://stackoverflow.com/",
     icon: SiStackoverflow,
+  },
+  {
+    label: "Discord",
+    href: "https://discord.com/",
+    icon: SiDiscord,
   },
 ];

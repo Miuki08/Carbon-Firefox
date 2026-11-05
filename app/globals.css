@@ -13,6 +13,11 @@
   --aurora-primary: rgba(79, 209, 197, 0.28);
   --aurora-secondary: rgba(139, 124, 246, 0.24);
   --aurora-tertiary: rgba(56, 189, 248, 0.16);
+
+  /* Focus mode opacity control */
+  --aurora-opacity: 1;
+  --orb-opacity: 1;
+  --orb-base-opacity: 0.35;
 }
 
 /* Morning: 05.00–10.59 */
@@ -49,6 +54,12 @@ html[data-period="night"] {
   --aurora-primary: rgba(79, 209, 197, 0.28);
   --aurora-secondary: rgba(139, 124, 246, 0.24);
   --aurora-tertiary: rgba(56, 189, 248, 0.16);
+}
+
+/* Focus mode */
+html[data-focus-mode="true"] {
+  --aurora-opacity: 0.15;
+  --orb-opacity: 0.1;
 }
 
 body {
@@ -93,15 +104,12 @@ body,
 @keyframes float-orb {
   0% {
     transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.35;
   }
   50% {
     transform: translate3d(0, -32px, 0) scale(1.08);
-    opacity: 0.6;
   }
   100% {
     transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.35;
   }
 }
 
@@ -109,7 +117,7 @@ body,
   position: absolute;
   border-radius: 9999px;
   filter: blur(120px);
-  opacity: 0.85;
+  opacity: calc(0.85 * var(--aurora-opacity));
   will-change: transform;
 }
 
@@ -163,6 +171,7 @@ body,
   );
   border: 1px solid rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(2px);
+  opacity: calc(var(--orb-base-opacity) * var(--orb-opacity));
   animation: float-orb 12s ease-in-out infinite;
 }
 

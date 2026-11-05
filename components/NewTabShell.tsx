@@ -8,6 +8,7 @@ import WeatherWidget from "./WeatherWidget";
 import FooterMark from "./FooterMark";
 import CommandLauncher from "./CommandLauncher";
 import TimeAccent from "./TimeAccent";
+import FocusModeToggle from "./FocusModeToggle";
 
 export default function NewTabShell() {
   return (
@@ -46,6 +47,7 @@ export default function NewTabShell() {
       </motion.div>
 
       <FooterMark />
+      <FocusModeToggle />
     </main>
   );
 }

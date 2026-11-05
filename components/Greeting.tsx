@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { useNow } from "@/lib/useNow";
 
 function getGreeting(hour: number) {
   if (hour >= 4 && hour < 11) return "Selamat pagi";
@@ -11,22 +11,22 @@ function getGreeting(hour: number) {
 }
 
 export default function Greeting() {
-  const [greeting, setGreeting] = useState("Selamat datang");
-  const [date, setDate] = useState("");
+  const timestamp = useNow();
 
-  useEffect(() => {
-    const now = new Date();
+  const date = timestamp === 0 ? null : new Date(timestamp);
 
-    setGreeting(getGreeting(now.getHours()));
-    setDate(
-      new Intl.DateTimeFormat("id-ID", {
+  const greeting = date
+    ? getGreeting(date.getHours())
+    : "Selamat datang";
+
+  const formattedDate = date
+    ? new Intl.DateTimeFormat("id-ID", {
         weekday: "long",
         day: "numeric",
         month: "long",
         year: "numeric",
-      }).format(now)
-    );
-  }, []);
+      }).format(date)
+    : "";
 
   return (
     <motion.div
@@ -47,14 +47,16 @@ export default function Greeting() {
         </span>
       </motion.p>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6 }}
-        className="mt-3 font-[family-name:var(--font-geist-mono)] text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]"
-      >
-        {date}
-      </motion.p>
+      {formattedDate && (
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="mt-3 font-[family-name:var(--font-geist-mono)] text-xs uppercase tracking-[0.24em] text-[var(--text-secondary)]"
+        >
+          {formattedDate}
+        </motion.p>
+      )}
 
       <motion.div
         initial={{ scaleX: 0 }}
