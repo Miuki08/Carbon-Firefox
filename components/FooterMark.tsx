@@ -12,7 +12,7 @@ export default function FooterMark() {
     >
       <span>Carbon</span>
       <span className="h-px w-6 bg-[var(--border)]" />
-      <span>v0.1</span>
+      <span>v1.0</span>
     </motion.div>
   );
 }
